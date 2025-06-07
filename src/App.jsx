@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Check, Truck, Calendar, MapPin, Moon, Sun, Recycle, Trash2, Leaf } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Calendar, MapPin, Moon, Sun, Recycle, Trash2, Leaf } from 'lucide-react';
 import skipGreen from "./assets/skip-green.png";
 import skipYellow from "./assets/skip-yellow.png";
 
@@ -22,8 +22,6 @@ const SkipSelectorRedesign = () => {
         capacity: skip.capacity || (index + 1) * 2,
         price: skip.price || Math.floor(Math.random() * 100) + 200,
         duration: skip.duration || (index % 2 === 0 ? '7 day hire' : '14 day hire'),
-        description: skip.description || 'Perfect for household waste and garden clearance',
-        wasteTypes: ['General Waste', 'Garden Waste', 'Construction Debris'][Math.floor(Math.random() * 3)],
         eco: index % 2 === 0,
         popular: index === 2
       }));
@@ -33,12 +31,12 @@ const SkipSelectorRedesign = () => {
     } catch (error) {
       console.error('Error fetching skip data:', error);
       setSkips([
-        { id: 1, size: '4 Yards', capacity: 4, price: 227, duration: '7 day hire', description: 'Perfect for small household clearances', wasteTypes: 'General Waste', eco: true, popular: false },
-        { id: 2, size: '6 Yards', capacity: 6, price: 300, duration: '14 day hire', description: 'Ideal for medium-sized projects', wasteTypes: 'Garden Waste', eco: false, popular: false },
-        { id: 3, size: '8 Yards', capacity: 8, price: 325, duration: '7 day hire', description: 'Great for larger home renovations', wasteTypes: 'Construction Debris', eco: true, popular: true },
-        { id: 4, size: '10 Yards', capacity: 10, price: 350, duration: '7 day hire', description: 'Perfect for major clearouts', wasteTypes: 'General Waste', eco: false, popular: false },
-        { id: 5, size: '12 Yards', capacity: 12, price: 400, duration: '14 day hire', description: 'Suitable for construction waste', wasteTypes: 'Construction Debris', eco: true, popular: false },
-        { id: 6, size: '14 Yards', capacity: 14, price: 450, duration: '7 day hire', description: 'Our largest skip for big projects', wasteTypes: 'General Waste', eco: false, popular: false }
+        { id: 1, size: '4 Yards', capacity: 4, price: 227, duration: '7 day hire', eco: true, popular: false },
+        { id: 2, size: '6 Yards', capacity: 6, price: 300, duration: '14 day hire', eco: false, popular: false },
+        { id: 3, size: '8 Yards', capacity: 8, price: 325, duration: '7 day hire', eco: true, popular: true },
+        { id: 4, size: '10 Yards', capacity: 10, price: 350, duration: '7 day hire', eco: false, popular: false },
+        { id: 5, size: '12 Yards', capacity: 12, price: 400, duration: '14 day hire', eco: true, popular: false },
+        { id: 6, size: '14 Yards', capacity: 14, price: 450, duration: '7 day hire', eco: false, popular: false }
       ]);
       setLoading(false);
     }
@@ -75,21 +73,11 @@ const SkipSelectorRedesign = () => {
   }
 
   return (
-    <div
-      className={`min-h-screen transition-all duration-500 ${
-        darkMode
-          ? "bg-gradient-to-br from-lime-900 via-black/80 to-teal-600"
-          : "bg-gradient-to-br from-amber-500 via-white to-teal-400"
-      }`}
-    >
+    <div className={`min-h-screen transition-all duration-500 ${darkMode ? "bg-gradient-to-br from-lime-900 via-black/80 to-teal-600" : "bg-gradient-to-br from-amber-300 via-white to-teal-300"}`}>
       {/* Floating Particles Effect */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute rounded-full opacity-20 animate-float ${
-              darkMode ? "bg-emerald-400" : "bg-emerald-300"
-            }`}
+          <div key={i} className={`absolute rounded-full opacity-20 animate-float ${darkMode ? "bg-emerald-400" : "bg-emerald-300"}`}
             style={{
               width: Math.random() * 100 + 50 + "px",
               height: Math.random() * 100 + 50 + "px",
@@ -103,13 +91,11 @@ const SkipSelectorRedesign = () => {
       </div>
 
       {/* Progress Header */}
-      <div
-        className={`${
+      <div className={`${
           darkMode
             ? "bg-slate-800/90 border-slate-700 shadow-xl"
             : "bg-gray-300 border-gray-200 shadow-lg"
-        } backdrop-blur-lg border-b transition-all duration-500      sticky top-0 z-40`}
-      >
+        } backdrop-blur-lg border-b transition-all duration-500 sticky top-0 z-40`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between mb-6">
             <div></div>
@@ -118,21 +104,9 @@ const SkipSelectorRedesign = () => {
                 <div className="p-3 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg">
                   <Recycle className="w-8 h-8 text-white" />
                 </div>
-                <h1
-                  className={`text-2xl md:text-3xl font-bold font-georgia underline ${
-                    darkMode ? "text-white" : "text-gray-900"
-                  } transition-colors duration-300`}
-                >
-                  Choose Your Skip Size
-                </h1>
+                <h1 className={`text-2xl md:text-3xl font-bold font-georgia underline ${darkMode ? "text-white" : "text-gray-900"} transition-colors duration-300`}>Choose Your Skip Size</h1>
               </div>
-              <p
-                className={`text-xl sm:text-3xl ${
-                  darkMode ? "text-emerald-300" : "text-emerald-600"
-                } font-bold font-consolas`}
-              >
-                Select the skip size that best suits your needs
-              </p>
+              <p className={`text-xl sm:text-3xl ${darkMode ? "text-emerald-300" : "text-emerald-600"} font-bold font-consolas`}>Select the skip size that best suits your needs</p>
             </div>
 
             {/* Dark Mode Toggle */}
@@ -341,47 +315,14 @@ const SkipSelectorRedesign = () => {
                         </div>
                       </div>
 
-                      <h3
-                        className={`text-xl md:text-2xl font-bold mb-2 transition-colors duration-300 ${
-                          darkMode ? "text-white" : "text-gray-900"
-                        }`}
-                      >
-                        {skip.size} Skip
-                      </h3>
-
-                      <div
-                        className={`text-sm font-medium mb-3 px-3 py-1 rounded-full inline-block ${
-                          darkMode
-                            ? "bg-slate-700 text-slate-300"
-                            : "bg-gray-100 text-gray-600"
-                        } transition-all duration-300`}
-                      >
-                        {skip.wasteTypes}
-                      </div>
-
-                      <p
-                        className={`text-sm mb-6 leading-relaxed transition-colors duration-300 ${
-                          darkMode ? "text-gray-300" : "text-gray-600"
-                        }`}
-                      >
-                        {skip.description}
-                      </p>
-
-                      {/* Duration */}
-                      <div
-                        className={`flex items-center justify-center text-sm mb-6 transition-colors duration-300 ${
-                          darkMode ? "text-gray-400" : "text-gray-500"
-                        }`}
-                      >
-                        <Calendar className="w-4 h-4 mr-2" />
-                        {skip.duration}
+                      <h3 className={`text-xl md:text-2xl font-bold mb-2 transition-colors duration-300 ${darkMode ? "text-white" : "text-gray-900"}`}>{skip.size} Skip</h3>
+                      <div className={`flex items-center justify-center text-xl font-bold font-monaco mb-6 transition-colors duration-300 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
+                        <Calendar className="w-4 h-4 mr-2" />{skip.duration}
                       </div>
 
                       {/* Price */}
                       <div className="mb-6">
-                        <div
-                          className={`text-4xl font-bold mb-1 transition-colors duration-300 ${
-                            selectedSkip?.id === skip.id
+                        <div className={`text-4xl font-bold mb-1 transition-colors duration-300 ${selectedSkip?.id === skip.id
                               ? "text-emerald-600"
                               : darkMode
                               ? "text-white"
@@ -390,30 +331,19 @@ const SkipSelectorRedesign = () => {
                         >
                           £{skip.price}
                         </div>
-                        <div
-                          className={`text-xs transition-colors duration-300 ${
-                            darkMode ? "text-gray-400" : "text-gray-500"
-                          }`}
-                        >
-                          All inclusive • Eco-friendly
-                        </div>
                       </div>
 
                       {/* Action Button */}
-                      <button
-                        className={`w-full py-4 px-6 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 ${
+                      <button className={`w-full py-4 px-6 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 ${
                           selectedSkip?.id === skip.id
                             ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40"
                             : darkMode
-                            ? "bg-slate-700 text-slate-300 hover:bg-slate-600 shadow-lg"
-                            : "bg-gray-100 text-gray-700 hover:bg-gray-200 shadow-lg hover:shadow-xl"
+                            ? "bg-black text-slate-300 hover:bg-slate-600 shadow-lg"
+                            : "bg-sky-500 text-gray-700 hover:bg-gray-200 shadow-lg hover:shadow-xl"
                         }`}
                       >
                         {selectedSkip?.id === skip.id ? (
-                          <span className="flex items-center justify-center">
-                            <Check className="w-5 h-5 mr-2" />
-                            Selected
-                          </span>
+                          <span className="flex items-center justify-center"><Check className="w-5 h-5 mr-2" />Selected</span>
                         ) : (
                           "Select This Skip"
                         )}
@@ -438,7 +368,7 @@ const SkipSelectorRedesign = () => {
                     onClick={() => handleSkipSelect(skip)}
                     style={{
                       animationDelay: `${index * 100}ms`,
-                      minWidth: "280px", // Ensure minimum width for touch targets
+                      minWidth: "280px",
                     }}
                   >
                     {/* Mobile Card Background */}
@@ -447,15 +377,15 @@ const SkipSelectorRedesign = () => {
                         selectedSkip?.id === skip.id
                           ? "bg-gradient-to-br from-emerald-400 via-teal-500 to-emerald-600 shadow-xl shadow-emerald-500/30"
                           : darkMode
-                          ? "bg-gradient-to-br from-slate-700 to-slate-800"
-                          : "bg-gradient-to-br from-white to-gray-50 shadow-lg"
+                          ? "bg-gradient-to-br from-slate-700 to-lime-500"
+                          : "bg-gradient-to-br from-white to-gray-500 shadow-lg"
                       }`}
                     >
                       <div
                         className={`relative rounded-2xl p-4 h-full transition-all duration-300 ${
                           darkMode
                             ? "bg-slate-800/90 backdrop-blur-sm"
-                            : "bg-white/90 backdrop-blur-sm"
+                            : "bg-gray-300 backdrop-blur-sm"
                         }`}
                       >
                         {/* Mobile Badges */}
@@ -470,9 +400,7 @@ const SkipSelectorRedesign = () => {
                             {skip.size}
                           </div>
                           {skip.popular && (
-                            <div className="px-2 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-yellow-400 to-orange-500 text-white">
-                              Popular
-                            </div>
+                            <div className="px-2 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-yellow-400 to-orange-500 text-white">Popular</div>
                           )}
                         </div>
 
@@ -502,7 +430,7 @@ const SkipSelectorRedesign = () => {
                         <div className="pt-6 text-center">
                           {/* Mobile Skip Image */}
                           <div
-                            className={`relative w-full h-24 mx-auto mb-3 rounded-xl overflow-hidden transition-all duration-500 ${
+                            className={`relative w-full h-48 mx-auto mb-3 rounded-xl overflow-hidden transition-all duration-500 ${
                               selectedSkip?.id === skip.id
                                 ? "shadow-xl shadow-emerald-500/30 ring-2 ring-emerald-400/50"
                                 : "shadow-md"
@@ -535,40 +463,10 @@ const SkipSelectorRedesign = () => {
                             </div>
                           </div>
 
-                          <h3
-                            className={`text-lg font-bold mb-1 transition-colors duration-300 ${
-                              darkMode ? "text-white" : "text-gray-900"
-                            }`}
-                          >
-                            {skip.size} Skip
-                          </h3>
-
-                          <div
-                            className={`text-xs font-medium mb-2 px-2 py-1 rounded-full inline-block ${
-                              darkMode
-                                ? "bg-slate-700 text-slate-300"
-                                : "bg-gray-100 text-gray-600"
-                            } transition-all duration-300`}
-                          >
-                            {skip.wasteTypes}
-                          </div>
-
-                          <p
-                            className={`text-xs mb-3 leading-relaxed transition-colors duration-300 px-2 ${
-                              darkMode ? "text-gray-300" : "text-gray-600"
-                            }`}
-                          >
-                            {skip.description}
-                          </p>
-
+                          <h3 className={`text-lg font-bold mb-1 transition-colors duration-300 ${darkMode ? "text-white" : "text-black"}`}>{skip.size} Skip</h3>
                           {/* Mobile Duration */}
-                          <div
-                            className={`flex items-center justify-center text-xs mb-3 transition-colors duration-300 ${
-                              darkMode ? "text-gray-400" : "text-gray-500"
-                            }`}
-                          >
-                            <Calendar className="w-3 h-3 mr-1" />
-                            {skip.duration}
+                          <div className={`flex items-center justify-center text-xl font-courier font-bold mb-3 transition-colors duration-300 ${darkMode ? "text-white" : "text-black"}`}>
+                            <Calendar className="w-3 h-3 mr-1" />{skip.duration}
                           </div>
 
                           {/* Mobile Price */}
@@ -584,13 +482,7 @@ const SkipSelectorRedesign = () => {
                             >
                               £{skip.price}
                             </div>
-                            <div
-                              className={`text-xs transition-colors duration-300 ${
-                                darkMode ? "text-gray-400" : "text-gray-500"
-                              }`}
-                            >
-                              All inclusive
-                            </div>
+                            
                           </div>
 
                           {/* Mobile Action Button */}
@@ -599,8 +491,8 @@ const SkipSelectorRedesign = () => {
                               selectedSkip?.id === skip.id
                                 ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30"
                                 : darkMode
-                                ? "bg-slate-700 text-slate-300 active:bg-slate-600"
-                                : "bg-gray-100 text-gray-700 active:bg-gray-200"
+                                ? "bg-black text-slate-300 active:bg-slate-600"
+                                : "bg-sky-500 text-gray-700 active:bg-gray-200"
                             }`}
                           >
                             {selectedSkip?.id === skip.id ? (
@@ -622,23 +514,7 @@ const SkipSelectorRedesign = () => {
 
             {/* Mobile scroll indicator */}
             <div className="flex justify-center mt-4">
-              <div className="flex space-x-1">
-                {skips.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      darkMode ? "bg-slate-600" : "bg-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
-              <div
-                className={`text-xs mt-2 ${
-                  darkMode ? "text-gray-400" : "text-gray-500"
-                }`}
-              >
-                Swipe to see more options
-              </div>
+              <div className={`text-xs mt-2 font-comic ${darkMode ? "text-gray-400" : "text-gray-500"}`}>Swipe to see more options</div>
             </div>
           </div>
         </div>

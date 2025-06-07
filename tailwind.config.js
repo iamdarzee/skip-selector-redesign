@@ -29,7 +29,7 @@ export default {
         papyrus: ["Papyrus", "fantasy"],
         impact: ["Impact", "fantasy"],
 
-        // Web fonts (you can add Google Fonts or other web fonts here)
+        // Web fonts
         inter: ["Inter", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
         "open-sans": ["Open Sans", "sans-serif"],
